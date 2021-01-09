@@ -13,6 +13,8 @@ int fd;
 
 static int child_fn() {
         printf("PID: %ld\n", (long)getpid());
+	sleep(10);
+	close(3);
         sleep (100);
 }
 
@@ -34,10 +36,10 @@ int main(int argc, char *argv[])
 		perror("Failed to open file\n");
 		exit(1);
 	}
-		
+        
         waitpid(child_pid, NULL, 0);
         printf("child terminated!\n");
-		close(fd);
+	close(fd);
         sleep (100);
 
 	return 0;
